@@ -3,7 +3,11 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev",
+    "dev-prep": "pnpm run backend:build",
+    "dev": "pnpm run backend:run & pnpm run frontend:run",
+    "backend:build": "docker-compose build",
+    "backend:run": "docker-compose up",
+    "frontend:run": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
