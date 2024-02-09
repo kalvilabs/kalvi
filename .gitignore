@@ -20,3 +20,5 @@ yarn-error.log*
 /.now/
 .vercel
 .prettierignore
+
+*.pyc
