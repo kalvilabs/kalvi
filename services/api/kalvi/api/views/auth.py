@@ -6,6 +6,9 @@ class SignUpEndPoint(APIView):
     def post(self, request):
         return Response("SIGNUP ENDPOINT")
 
+    def get(self, request):
+        return Response("SIGNUP ENDPOINT")
+
 
 class SignInEndPoint(APIView):
     def post(self, request):

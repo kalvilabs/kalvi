@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./services/api
+    command:
+      - /bin/bash
+      - -c
+      - |
+        poetry run python manage.py migrate
+        poetry run python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./services/api/:/usr/src/app/
+    ports:
+      - 8000:8000
+    environment:
+      - SECRET_KEY=kalvisquad
+      - DATABASE_NAME=kalvi
+      - DATABASE_USER=kalvi
+      - DATABASE_PASSWORD=kalvi
+      - DATABASE_HOST=db
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=kalvi
+      - POSTGRES_PASSWORD=kalvi
+      - POSTGRES_DB=kalvi
+volumes:
+  postgres_data:

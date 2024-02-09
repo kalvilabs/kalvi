@@ -1,11 +1,13 @@
-FROM python:3.11.7-alpine3.19
+from python:3.12.2
 
-WORKDIR /api
+RUN pip3 install poetry
 
-COPY requirements.txt ./requirements.txt
+WORKDIR /usr/src/app
 
-RUN pip install -r requirements.txt
+COPY poetry.lock pyproject.toml /usr/src/app/
 
 COPY . .
 
-EXPOSE 8000
+RUN poetry install
+
+CMD ["poetry", "run", "python", "manage.py", "runserver"]
