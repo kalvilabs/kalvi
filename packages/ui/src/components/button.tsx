@@ -1,13 +1,14 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import {
   Button as _Button,
   type ButtonProps as _ButtonProps,
-} from "react-aria-components"
+} from "react-aria-components";
 
-import { cn } from "../lib/utils"
+import { cn } from "../lib/utils";
+import Link, { LinkProps } from "next/link";
 
 const buttonVariants = cva(
   "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -36,13 +37,16 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 export interface ButtonProps
   extends _ButtonProps,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  asLink?: boolean;
+  href?: LinkProps["href"];
+}
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const ButtonElement = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, ...props }, ref) => {
     return (
       <_Button
@@ -59,9 +63,21 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
-Button.displayName = "Button"
+);
 
-export { Button, buttonVariants }
+const Button = ({ asLink, href, ...props }: ButtonProps) => {
+  if (!asLink) return <ButtonElement {...props}/>;
+
+  if (!href) throw new Error("Must enter href for link element");
+  else
+    return (
+      <Link legacyBehavior href={href}>
+        <ButtonElement {...props}/>
+      </Link>
+    );
+};
+ButtonElement.displayName = "Button";
+
+export { Button, buttonVariants };
