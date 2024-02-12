@@ -24,3 +24,10 @@ yarn-error.log*
 *.pyc
 
 .turbo
+
+# dependencies in packages
+packages/eslint-config/node_modules
+packages/ui/node_modules
+
+#ignore testing-app
+/apps/test-app
