@@ -1,4 +1,6 @@
-import { Test } from "@repo/ui";
+import { Button } from "@repo/ui/components/button";
 export default function Home() {
-  return <Test />;
+  return <Button >
+    Hello
+  </Button>;
 }
