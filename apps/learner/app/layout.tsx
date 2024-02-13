@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import "@mantine/core/styles.css";
-import { Style } from "@repo/ui";
+import "@repo/ui/global.css"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,9 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Style>
           <>{children}</>
-        </Style>
       </body>
     </html>
   );
