@@ -24,3 +24,11 @@ yarn-error.log*
 *.pyc
 
 .turbo
+
+# dependencies in the packages folder
+packages/*/node_modules
+packages/*/dist
+packages/*/.turbo
+
+# gitignore you can add to your project to ignore testing
+apps/.gitignore
