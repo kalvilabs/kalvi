@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import "@mantine/core/styles.css";
 import { Style } from "@repo/ui";
 
 export const metadata: Metadata = {
