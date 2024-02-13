@@ -15,7 +15,7 @@ pnpm run dev-prep
 Step 2: Run to boot both the frontend and backend server
 ```
 
-pnpm run dev-prep
+pnpm run dev
 
 ```
 
