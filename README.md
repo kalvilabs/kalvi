@@ -13,6 +13,7 @@ pnpm run dev-prep
 
 ```
 Step 2: Run to boot both the frontend and backend server
+(Note: This will also run pending db migrations in the backend)
 ```
 
 pnpm run dev
@@ -31,5 +32,13 @@ Optional: Run to boot only the frontend
 ```
 
 pnpm run frontend:run
+
+```
+
+# How to run Django Commands
+
+```
+
+docker-compose run api poetry run python manage.py makemigration
 
 ```
