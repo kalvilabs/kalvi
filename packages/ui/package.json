@@ -21,9 +21,5 @@
     "postcss-simple-vars": "^7.0.1",
     "react": "^18.2.0",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "@mantine/core": "^7.5.0",
-    "@mantine/hooks": "^7.5.0"
   }
 }
