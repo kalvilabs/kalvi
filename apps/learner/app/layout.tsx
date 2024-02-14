@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Style } from "@repo/ui";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,9 +13,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Style>
           <>{children}</>
-        </Style>
       </body>
     </html>
   );
