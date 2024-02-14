@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./postcss.config": "./postcss.config.js",
-    "./tailwind.config": "./tailwind.config.ts",
-    "./*": "./src/index.ts",
-    "./global.css": "./global.css"
+    "./*": "./src/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

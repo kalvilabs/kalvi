@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@repo/ui/global.css"
+import "@repo/tailwind-config/css"
 
 export const metadata: Metadata = {
   title: "Create Next App",
