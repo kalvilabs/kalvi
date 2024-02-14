@@ -9,12 +9,14 @@
  Explain the **motivation** of this Pull Request
 -->
 
-- [ ] Tested
+- [ ] Tested*
 - [ ] Test Case added
-- [ ] Build Successful
-- [ ] Sufficient Code comments added
+- [ ] Build Successful*
+- [ ] Sufficient Code comments added*
 - [ ] Attached Screenshots / Videos <!-- if the PR contains UI changed, fixes, improvements -->
 - [ ] All Relevant Documents added
+
+* - Should be done 
 
 ## Depends on
 
