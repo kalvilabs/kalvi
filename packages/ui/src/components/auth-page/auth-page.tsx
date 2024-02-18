@@ -3,10 +3,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "~partials/card";
-import { Input } from "~partials/input";
-import { Button } from "~partials/button";
-import { Label } from "~partials/label";
+} from "../../../src/partials/card";
+import { Input } from "../../../src/partials/input";
+import { Button } from "../../../src/partials/button";
+import { Label } from "../../../src/partials/label";
 
 /**
  * It is wrapper class for the auth page in in which the content should be passed as children
@@ -63,7 +63,7 @@ function InputsWrapper({ children }: { children: React.ReactNode }) {
 
 /**
  * This is input field which is aligned with the design of the auth page
- * 
+ *
  * @param fieldName - The name of the field
  * @param type - The type of the input field
  * @param placeholder - The placeholder of the input field (optional)
@@ -71,7 +71,7 @@ function InputsWrapper({ children }: { children: React.ReactNode }) {
 function InputField({
   fieldName,
   type,
-  placeholder
+  placeholder,
 }: {
   fieldName: string;
   type: string;
@@ -80,7 +80,11 @@ function InputField({
   return (
     <li>
       <Label htmlFor={fieldName}>{fieldName}</Label>
-      <Input id={fieldName} type={type} placeholder={placeholder && placeholder} />
+      <Input
+        id={fieldName}
+        type={type}
+        placeholder={placeholder && placeholder}
+      />
     </li>
   );
 }
@@ -105,7 +109,10 @@ function FooterWrapper({ children }: { children: React.ReactNode }) {
  */
 function ButtonElement({ contentIn }: { contentIn: string }) {
   return (
-    <Button variant="default" className="grow bg-black text-white hover:bg-black/80">
+    <Button
+      variant="default"
+      className="grow bg-black text-white hover:bg-black/80"
+    >
       {contentIn}
     </Button>
   );
@@ -128,7 +135,7 @@ function FooterContent({ children }: { children: React.ReactNode }) {
  * @element - FooterWrapper
  * @element - ButtonElement
  * @element - FooterContent
- * 
+ *
  * Ideal Order of Usage:
  * 1. PageWrapper
  * 2. InputsWrapper - InputField's children

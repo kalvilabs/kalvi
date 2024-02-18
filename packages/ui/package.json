@@ -4,7 +4,11 @@
   "private": true,
   "exports": {
     "./components": "./src/components/index.ts",
-    "./lib": "./src/lib/index.ts"
+    "./lib": "./src/lib/index.ts",
+    "./button": "./src/partials/button.tsx",
+    "./card": "./src/partials/card.tsx",
+    "./input": "./src/partials/input.tsx",
+    "./label": "./src/partials/label.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

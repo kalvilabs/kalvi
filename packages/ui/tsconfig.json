@@ -4,9 +4,7 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "~components/*": ["./src/components/*"],
-      "~lib/*": ["./src/lib/*"],
-      "~partials/*": ["./src/partials/*"],
+      "@/*": ["./*"]
     }
   },
   "include": ["src"],
