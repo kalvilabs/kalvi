@@ -108,14 +108,7 @@ function FooterWrapper({ children }: { children: React.ReactNode }) {
  * @param contentIn - The content of the button
  */
 function ButtonElement({ contentIn }: { contentIn: string }) {
-  return (
-    <Button
-      variant="default"
-      className="grow bg-black text-white hover:bg-black/80"
-    >
-      {contentIn}
-    </Button>
-  );
+  return <Button>{contentIn}</Button>;
 }
 
 /**
