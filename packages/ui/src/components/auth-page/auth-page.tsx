@@ -37,8 +37,8 @@ function PageWrapper({
       aria-label={pageTitle}
       className="h-full w-full flex items-center justify-center"
     >
-      <Card className="min-w-[200px] max-w-[450px] p-4">
-        <CardHeader className="pl-0">
+      <Card>
+        <CardHeader>
           <CardTitle>{cardTitle}</CardTitle>
           {cardDescription && (
             <CardDescription>{cardDescription}</CardDescription>
