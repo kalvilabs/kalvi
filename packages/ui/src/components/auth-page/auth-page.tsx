@@ -37,8 +37,8 @@ function PageWrapper({
       aria-label={pageTitle}
       className="h-full w-full flex items-center justify-center"
     >
-      <Card className="min-w-[200px] max-w-[450px] p-4">
-        <CardHeader className="pl-0">
+      <Card>
+        <CardHeader>
           <CardTitle>{cardTitle}</CardTitle>
           {cardDescription && (
             <CardDescription>{cardDescription}</CardDescription>
@@ -108,14 +108,7 @@ function FooterWrapper({ children }: { children: React.ReactNode }) {
  * @param contentIn - The content of the button
  */
 function ButtonElement({ contentIn }: { contentIn: string }) {
-  return (
-    <Button
-      variant="default"
-      className="grow bg-black text-white hover:bg-black/80"
-    >
-      {contentIn}
-    </Button>
-  );
+  return <Button>{contentIn}</Button>;
 }
 
 /**
