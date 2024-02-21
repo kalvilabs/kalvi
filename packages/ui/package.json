@@ -5,7 +5,8 @@
   "exports": {
     "./components": "./src/components/index.ts",
     "./lib": "./src/lib/index.ts",
-    "./partials": "./src/partials/index.ts"
+    "./partials": "./src/partials/index.ts",
+    "./forms": "./src/react-form/form.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -29,12 +30,15 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-checkbox": "^1.0.4",
     "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.331.0",
-    "tailwind-merge": "^2.2.1"
+    "react-hook-form": "^7.50.1",
+    "tailwind-merge": "^2.2.1",
+    "zod": "^3.22.4"
   }
 }
