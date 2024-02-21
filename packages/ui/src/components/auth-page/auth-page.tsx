@@ -141,6 +141,5 @@ export const AuthPage = {
   InputsWrapper,
   InputField,
   FooterWrapper,
-  ButtonElement,
   FooterContent,
 };
