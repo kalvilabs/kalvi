@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "mintlify dev"
+    "dev": "mintlify dev -p 3002"
   },
   "devDependencies": {
     "mintlify": "^4.0.127"
