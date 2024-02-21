@@ -8,13 +8,14 @@
     "backend:build": "docker-compose build",
     "backend:run": "docker-compose up",
     "frontend:run": "turbo dev",
+    "doc:run": "turbo dev -F kalvi-documentation",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "prettier": "^3.1.1",
     "turbo": "latest"
   },
