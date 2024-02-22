@@ -1,5 +1,6 @@
 from django.urls import path
-from kalvi.api.views import SignInEndPoint, SignUpEndPoint
+from kalvi.api.views import SignInEndPoint, SignUpEndPoint, UserProfileView, UserChangePasswordView, SendPasswordResetEmailView, UserPasswordResetView
+
 
 urlpatterns = [
     path(
@@ -12,4 +13,24 @@ urlpatterns = [
         SignInEndPoint.as_view(),
         name="kalvi-sign-in",
     ),
+    path(
+        "profile/",
+        UserProfileView.as_view(),
+        name="user-detail",
+    ),
+    path(
+        "update-password/",
+        UserChangePasswordView.as_view(),
+        name="password-update",
+    ),
+    path(
+        "send-reset-password-email/",
+        SendPasswordResetEmailView.as_view(),
+        name="send-reset-email",
+    ),
+    path(
+        "reset-password/<str:uid>/<str:token>/",
+        UserPasswordResetView.as_view(),
+        name="reset-password-through-mail",
+    )
 ]
