@@ -6,7 +6,8 @@
     "./components": "./src/components/index.ts",
     "./lib": "./src/lib/index.ts",
     "./partials": "./src/partials/index.ts",
-    "./forms": "./src/react-form/form.tsx"
+    "./forms": "./src/react-form/form.tsx",
+    "./icons": "./src/icons/index.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
