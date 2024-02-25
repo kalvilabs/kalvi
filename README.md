@@ -1,3 +1,13 @@
+<h1>Kalvi - Open Source Infrastructure for Online Education</h1>
+<b>Easily launch educational platforms, craft online courses, sell mock tests,
+handle live classes, and foster communities - all without building from scratch.</b>
+
+<br>
+<br>
+
+![image](https://github.com/kalvilabs/kalvios/assets/9934901/9314fe63-bd71-4814-b839-d2db37d54183)
+
+
 # Quick Start
 **Pre-requisites**
 
