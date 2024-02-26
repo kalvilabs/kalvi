@@ -15,7 +15,7 @@ export const FormMessage = React.forwardRef<
 
   return (
     <Textbox
-      variant="description"
+      variant="fieldError"
       ref={ref}
       id={formMessageId}
       fieldError={error}
