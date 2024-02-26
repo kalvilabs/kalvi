@@ -6,14 +6,31 @@
  * 2. FooterContent
  *
  */
-export function FooterWrapper({ children }: { children: React.ReactNode }) {
-  return <footer className="flex gap-4 mt-4">{children}</footer>;
+
+export function PageFooterWrapper({
+  children,
+  dividerTxt,
+  divider,
+}: {
+  children: React.ReactNode;
+  dividerTxt?: string;
+  divider?: boolean;
+}) {
+  return (
+    <footer className="flex flex-col gap-4 mt-4 space-y-2">
+      {divider && <div className="flex flex-col items-center justify-center">
+        <span className="bg-white px-2 z-10 text-sm">{dividerTxt}</span>
+        <hr className="border-gray-400/50 -translate-y-3 w-full" />
+      </div>}
+      <div className="flex gap-4">{children}</div>
+    </footer>
+  );
 }
 
-/**
- * It is a footer content which is aligned with the design of the auth page
- *
- */
-export function FooterContent({ children }: { children: React.ReactNode }) {
-  return <div className="text-sm text-gray-600 py-2 px-4">{children}</div>;
+export const FooterFlexLine = ({children}: {children: React.ReactNode}) => {
+  return (
+    <div className="flex items-center space-x-2 justify-between w-full">
+      {children}
+    </div>
+  )
 }
