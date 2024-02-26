@@ -9,7 +9,9 @@ const textVariants = cva(
     variants: {
       variant: {
         default: "text-base text-black",
-        description: "text-sm text-gray-400",
+        description: "text-sm text-gray-600",
+        link: "inline text-stone-500",
+        fieldError: "mt-1 text-xs",
       },
     },
     defaultVariants: {
@@ -28,11 +30,12 @@ export const Textbox = React.forwardRef<
   HTMLParagraphElement,
   TextboxProps
 >(({variant, fieldError = undefined ,className, ...props }, ref) => {
+  
 
   return (
     <p
       ref={ref}
-      className={cn(textVariants({ variant, className }), fieldError && 'text-red-500')}
+      className={cn(textVariants({ variant, className }), fieldError && 'text-red-500 mt-1 text-xs')}
       {...props}
     />
   )
