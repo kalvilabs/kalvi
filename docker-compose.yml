@@ -23,6 +23,7 @@ services:
       - EMAIL_PORT=587
       - EMAIL_HOST_USER=USER
       - EMAIL_HOST_PASSWORD=PASSWORD
+      - GOOGLE_CLIENT_ID=CLIENT_ID
   db:
     image: postgres:15
     volumes:
