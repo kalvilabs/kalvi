@@ -1,11 +1,12 @@
-import { FooterContent, FooterWrapper } from "./footer";
-import { InputField, InputsWrapper } from "./input-wrapper";
-import { PageWrapper } from "./page-wrapper";
+import { FooterFlexLine, PageFooterWrapper } from "./footer";
+import { FormFooter, FormWrapper } from "./input-wrapper";
+import { FormHeader, PageWrapper } from "./page-wrapper";
 
 export const AuthPage = {
   PageWrapper,
-  InputsWrapper,
-  InputField,
-  FooterWrapper,
-  FooterContent,
+  FormHeader,
+  FormWrapper,
+  PageFooterWrapper,
+  FooterFlexLine,
+  FormFooter
 };
