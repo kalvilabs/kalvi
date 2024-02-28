@@ -5,6 +5,7 @@ import {
   CardTitle,
 } from "../../../src/partials/card";
 
+
 /**
  * It is wrapper class for the auth page in in which the content should be passed as children
  *
@@ -14,31 +15,27 @@ import {
  * 3. FooterWrapper
  *
  */
-export function PageWrapper({
-  pageTitle,
+export function PageWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="h-full w-full">
+      <section className="md:max-w-md md:mx-auto md:pt-10 py-5">
+        <Card>{children}</Card>
+      </section>
+    </div>
+  );
+}
+
+export function FormHeader({
   cardTitle,
-  cardDescription,
-  children,
+  cardDescriptionComponent,
 }: {
-  pageTitle: string;
-  children: React.ReactNode;
   cardTitle: string;
-  cardDescription?: string;
+  cardDescriptionComponent?: React.ReactNode;
 }) {
   return (
-    <section
-      aria-label={pageTitle}
-      className="h-full w-full flex items-center justify-center"
-    >
-      <Card>
-        <CardHeader>
-          <CardTitle>{cardTitle}</CardTitle>
-          {cardDescription && (
-            <CardDescription>{cardDescription}</CardDescription>
-          )}
-        </CardHeader>
-        {children}
-      </Card>
-    </section>
+    <CardHeader>
+      <CardTitle>{cardTitle}</CardTitle>
+      {cardDescriptionComponent && <CardDescription>{cardDescriptionComponent}</CardDescription>}
+    </CardHeader>
   );
 }

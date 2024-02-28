@@ -1,36 +1,50 @@
-import { Input } from "../../../src/partials/input";
-import { Label } from "../../../src/partials/label";
+import { cn } from "../../../src/lib";
+import React from "react";
+import { BaseSyntheticEvent } from "react";
 /**
  * It is wrapper class for the input fields in which the inputs should be passed as children.
  *
  * Preferrably the children should be InputField components
  *
  */
-export function InputsWrapper({ children }: { children: React.ReactNode }) {
-  return <ul className="w-full max-w-md">{children}</ul>;
-}
-
-/**
- * This is input field which is aligned with the design of the auth page
- *
- */
-export function InputField({
-  fieldName,
-  type,
-  placeholder,
+export function FormWrapper({
+  children,
+  onSubmit,
 }: {
-  fieldName: string;
-  type: string;
-  placeholder?: string;
+  children: React.ReactNode;
+  onSubmit: (
+    e?: BaseSyntheticEvent<object, any, any>
+  ) => Promise<void>;
 }) {
   return (
-    <li>
-      <Label htmlFor={fieldName}>{fieldName}</Label>
-      <Input
-        id={fieldName}
-        type={type}
-        placeholder={placeholder && placeholder}
-      />
-    </li>
+    <form className="w-full gap-4 spce-y-4 grid grid-cols-2" onSubmit={onSubmit}>
+      {children}
+    </form>
+  );
+}
+
+export interface FormItemWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
+  width?: "half" | "full";
+}
+
+export const FormItemWrapper = React.forwardRef<
+  HTMLDivElement,
+  FormItemWrapperProps
+>(({ width = "full", className, ...props }, ref) => {
+  return (
+    <div
+      ref={ref}
+      className={cn(width === "half" ? "col-span-1" : "col-span-2")}
+      {...props}
+    />
+  );
+});
+FormItemWrapper.displayName = "FormItemWrapper";
+
+export function FormFooter({ children, isMarginTop }: { children: React.ReactNode, isMarginTop?: boolean }) {
+  return (
+    <footer className={cn("space-y-4 space-x-2 col-span-2", isMarginTop && 'mt-2')}>
+      {children}
+    </footer>
   );
 }
