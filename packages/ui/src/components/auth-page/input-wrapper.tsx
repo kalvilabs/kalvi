@@ -41,7 +41,7 @@ export const FormItemWrapper = React.forwardRef<
 });
 FormItemWrapper.displayName = "FormItemWrapper";
 
-export function FormFooter({ children, marginTop }: { children: React.ReactNode, marginTop?: boolean }) {
+export function FormFooter({ children, isMarginTop }: { children: React.ReactNode, isMarginTop?: boolean }) {
   return (
     <footer className={cn("space-y-4 space-x-2 col-span-2", marginTop && 'mt-2')}>
       {children}
