@@ -8,7 +8,6 @@ const textVariants = cva("", {
     variant: {
       default: "text-base text-black",
       description: "text-sm text-gray-600",
-      link: "inline text-stone-500",
       fieldError: "mt-1 text-xs",
     },
     defaultVariants: {
