@@ -27,15 +27,15 @@ export function PageWrapper({ children }: { children: React.ReactNode }) {
 
 export function FormHeader({
   cardTitle,
-  cardDescription,
+  cardDescriptionComponent,
 }: {
   cardTitle: string;
-  cardDescription?: React.ReactNode;
+  cardDescriptionComponent?: React.ReactNode;
 }) {
   return (
     <CardHeader>
       <CardTitle>{cardTitle}</CardTitle>
-      {cardDescription && <CardDescription>{cardDescription}</CardDescription>}
+      {cardDescriptionComponent && <CardDescription>{cardDescriptionComponent}</CardDescription>}
     </CardHeader>
   );
 }
