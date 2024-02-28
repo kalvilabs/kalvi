@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { FormItemWrapper, FormItemWrapperProps } from "../components/auth-page/input-wrapper";
 
 type FormItemContextValue = {
   id: string;
@@ -10,16 +11,17 @@ export const FormItemContext = React.createContext<FormItemContextValue>(
   {} as FormItemContextValue
 );
 
-export const FormItem = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-  const id = React.useId();
+interface FormItemProps extends FormItemWrapperProps {}
 
-  return (
-    <FormItemContext.Provider value={{ id }}>
-      <div ref={ref} className={className} {...props} />
-    </FormItemContext.Provider>
-  );
-});
+export const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
+  ({ width, className, ...props }, ref) => {
+    const id = React.useId();
+
+    return (
+      <FormItemContext.Provider value={{ id }}>
+        <FormItemWrapper width={width} ref={ref} {...props} />
+      </FormItemContext.Provider>
+    );
+  }
+);
 FormItem.displayName = "FormItem";
