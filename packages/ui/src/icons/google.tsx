@@ -1,13 +1,7 @@
-import { IconNode, createLucideIcon } from "lucide-react";
+import { IconNode, LucideProps, createLucideIcon } from "lucide-react";
+import { cn } from "../lib";
 
 const GoogleIconNode: IconNode = [
-  [
-    "svg",
-    {
-      key: "svg-1",
-      viewBox: "0 0 24 24"
-    },
-  ],
   [
     "path",
     {
@@ -42,4 +36,15 @@ const GoogleIconNode: IconNode = [
   ],
 ];
 
-export const CustomGoogleIcon = createLucideIcon("Google", GoogleIconNode);
+const Icon = createLucideIcon("Google", GoogleIconNode);
+
+export const CustomGoogleIcon = ({
+  isProviderButton,
+  ...props
+}: { isProviderButton?: boolean } & LucideProps) => (
+  <Icon
+    stroke="transparent"
+    className={cn(isProviderButton && "h-5 w-5")}
+    {...props}
+  />
+);
