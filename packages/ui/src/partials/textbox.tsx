@@ -1,5 +1,5 @@
-import React from "react"
-import { cn } from "../lib/tw-class-merge"
+import React from "react";
+import { cn } from "../lib/tw-class-merge";
 import { cva, type VariantProps } from "class-variance-authority";
 import { FieldError } from "react-hook-form";
 
@@ -13,14 +13,14 @@ const textVariants = cva("", {
     defaultVariants: {
       variant: "default",
     },
-  }
-);
+  },
+});
 
 export interface TextboxProps
   extends React.HTMLAttributes<HTMLParagraphElement>,
     VariantProps<typeof textVariants> {
-      fieldError?: FieldError | undefined
-    }
+  fieldError?: FieldError | undefined;
+}
 
 export const Textbox = React.forwardRef<HTMLParagraphElement, TextboxProps>(
   ({ variant, fieldError = undefined, className, ...props }, ref) => {
