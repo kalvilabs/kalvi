@@ -13,7 +13,7 @@ export function FormWrapper({
 }: {
   children: React.ReactNode;
   onSubmit: (
-    e?: BaseSyntheticEvent<object, any, any> | undefined
+    e?: BaseSyntheticEvent<object, any, any>
   ) => Promise<void>;
 }) {
   return (
