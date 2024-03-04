@@ -17,7 +17,7 @@ We are an opensource company building modern technology stack for building your 
 
 <h3>Connect - Build a vibrant learning community to foster social learning experiences</h3>
 
-   ![image](https://github.com/kalvilabs/.github/assets/9934901/fe80c8ca-bd88-4c7d-b757-c3813078e6dd)
+![Screenshot-2024-03-04-at-45443PM](https://github.com/kalvilabs/kalvi/assets/9934901/2ffd6972-74fd-48a3-90d5-a08a12b2cd6b)
 
 <h3>Assess - Administer online assessments in Coding, Math and Mocks with Proctoring </h3>
 
