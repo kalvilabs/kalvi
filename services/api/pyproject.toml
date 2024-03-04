@@ -11,6 +11,7 @@ Django = "^5.0.2"
 djangorestframework = "^3.14.0"
 djangorestframework-simplejwt = "^5.3.1"
 psycopg = "^3.1.18"
+django-redis = "^5.4.0"
 
 
 [build-system]

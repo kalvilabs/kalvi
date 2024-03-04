@@ -159,3 +159,14 @@ SIMPLE_JWT = {
 }
 
 PASSWORD_RESET_TIMEOUT=900     #900 Sec = 15 Min
+
+# Redis_Configuration
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.environ.get("REDIS_URL"),  # Use your Redis server's address and port
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    }
+}
