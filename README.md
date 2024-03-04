@@ -12,8 +12,7 @@ We are an opensource company building modern technology stack for building your 
 
 <h3>Teach - All the tools you need to create engaging digital learning experiences </h3> 
 
-![image](https://github.com/kalvilabs/.github/assets/9934901/ec31939f-2cf7-4d57-a225-090bc6d061e9)
-
+![1](https://github.com/kalvilabs/kalvi/assets/9934901/6dfbe3a4-179d-48ad-8009-ae58bd7b9ba0)
 
 <h3>Connect - Build a vibrant learning community to foster social learning experiences</h3>
 
