@@ -1,13 +1,6 @@
-import { IconNode, createLucideIcon } from "lucide-react";
+import { IconNode, LucideProps, createLucideIcon } from "lucide-react";
 
 const GoogleIconNode: IconNode = [
-  [
-    "svg",
-    {
-      key: "svg-1",
-      viewBox: "0 0 24 24"
-    },
-  ],
   [
     "path",
     {
@@ -42,4 +35,8 @@ const GoogleIconNode: IconNode = [
   ],
 ];
 
-export const CustomGoogleIcon = createLucideIcon("Google", GoogleIconNode);
+const Icon = createLucideIcon("Google", GoogleIconNode);
+
+export const GoogleAuthIcon = ({ ...props }: LucideProps) => (
+  <Icon stroke="transparent" {...props} />
+);
