@@ -11,7 +11,7 @@ export const FormItemContext = React.createContext<FormItemContextValue>(
   {} as FormItemContextValue
 );
 
-interface FormItemProps extends FormItemWrapperProps {}
+export interface FormItemProps extends FormItemWrapperProps {}
 
 export const FormItem = React.forwardRef<HTMLDivElement, FormItemProps>(
   ({ width, className, ...props }, ref) => {

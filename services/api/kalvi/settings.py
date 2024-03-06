@@ -160,7 +160,6 @@ SIMPLE_JWT = {
 
 PASSWORD_RESET_TIMEOUT=900     #900 Sec = 15 Min
 
-# Redis_Configuration
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
