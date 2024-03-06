@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root{
+    --primary: #006FEE;
+    --primary-foreground: #FFFFFF;
+
+    --success: #17c964;
+    --success-foreground: #11181C;
+
+    --warning: #f5a524;
+    --warning-foreground: #11181C;
+
+    --danger: #f31260;
+    --danger-foreground: #FFFFFF;
+
+    --focus: #006FEE;
+  }
+
+  .default.light {
+    --background: #FFFFFF;
+    --foreground: #11181C;
+
+    --secondary: #d4d4d8;
+    --secondary-foreground: #11181C;
+    
+    --content-1: #FFFFFF;
+    --content-2: #f4f4f5;
+    --content-3: #e4e4e7;
+    --content-4: #d4d4d8;
+  }
+
+  .default.dark {
+    --background: #000000;
+    --foreground: #ECEDEE;
+
+    --secondary: #3f3f46;
+    --secondary-foreground: #FFFFFF;
+    
+    --content-1: #18181b;
+    --content-2: #27272a;
+    --content-3: #3f3f46;
+    --content-4: #52525b;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    scroll-behavior: smooth;
+    --header-height: 74px;
+    --footer-height: 60px;
+    --sidebar-width: 260px;
+  }
+  /* Track */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f2f2f2;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #999;
+  }
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #777;
+  }
+}

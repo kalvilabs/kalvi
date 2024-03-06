@@ -2,7 +2,13 @@
   "name": "@repo/ui",
   "version": "0.0.0",
   "private": true,
-  "exports": "./src/index.ts",
+  "exports": {
+    "./components": "./src/components/index.ts",
+    "./lib": "./src/lib/index.ts",
+    "./partials": "./src/partials/index.ts",
+    "./forms": "./src/react-form/form.tsx",
+    "./icons": "./src/icons/index.ts"
+  },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
@@ -15,11 +21,25 @@
     "@types/node": "^20.10.6",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
+    "admin": "^1.4.1",
+    "autoprefixer": "^10.4.17",
     "eslint": "^8.56.0",
+    "learner": "^1.0.0",
     "postcss": "^8.4.33",
-    "postcss-preset-mantine": "^1.12.3",
-    "postcss-simple-vars": "^7.0.1",
     "react": "^18.2.0",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.331.0",
+    "react-hook-form": "^7.50.1",
+    "tailwind-merge": "^2.2.1",
+    "zod": "^3.22.4"
   }
 }

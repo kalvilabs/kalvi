@@ -1,0 +1,16 @@
+{
+  "name": "@repo/tailwind-config",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --max-warnings 0"
+  },
+  "exports": {
+    "./postcss-config": "./postcss.config.js",
+    "./tw-config": "./tailwind.config.ts",
+    "./css": "./global.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

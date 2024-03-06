@@ -101,7 +101,7 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
         reset_url = f'http://localhost:8000{reset_link}'
         send_reset_password_email(user.email, reset_url)
         return attrs
-        
+    
 class UserPasswordResetSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=255, style={'input_type':'password'}, write_only=True)
     confirm_password = serializers.CharField(max_length=255, style={'input_type':'password'}, write_only=True)

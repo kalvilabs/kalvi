@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import "@repo/tailwind-config/css";
+import { ApplicationLayout } from "@repo/ui/components";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
-          <>{children}</>
-      </body>
+      <ApplicationLayout>{children}</ApplicationLayout>
     </html>
   );
 }
