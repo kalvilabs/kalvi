@@ -97,3 +97,7 @@ There are many ways to contribute to Kalvi, including:
 -   Submitting  [documentation]([https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=%5BBUG%5D](https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=documentation&projects=&template=documentation.yml&title=%5BDOC%5D)), [bugs](https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=%5BBUG%5D) and [feature requests](https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml&title=%5BFEAT%5D)  for various components.
 -   Speaking or writing about Kalvi or any other ecosystem integration and  [letting us know](https://discord.com/invite/R5MUnxrECk)!
 -   Upvoting  [popular feature requests](https://github.com/kalvilabs/kalvi/issues)  to show your support.
+
+## We are still in Pre-Alpha
+
+We are currently still in Pre-Alpha and under active developement and steady progress. 
