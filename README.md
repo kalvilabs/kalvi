@@ -68,10 +68,18 @@ pnpm run frontend:run
 
 ```
 
-# How to run Django Commands
+**How to run Django Commands**
 
 ```
 
 docker-compose run api poetry run python manage.py makemigration
 
 ```
+
+# LICENSE
+The code in this repository is licensed under version 3 of the AGPL unless otherwise noted. Please see the [LICENSE](https://github.com/kalvilabs/kalvi/blob/master/LICENSE) file for details.
+
+# Issue Tracker
+We use Github Issues for our issue tracker. You can search
+[previously reported issues](https://github.com/kalvilabs/kalvi/issues).  If you need to report a bug, or want to discuss
+a new feature before you implement it, please [create new issue](https://github.com/kalvilabs/kalvi/issues/new/choose).
