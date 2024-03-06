@@ -4,7 +4,7 @@ import * as React from "react";
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "../../src/lib/tw-class-merge";
+import { cn } from "../lib/tw-class-merge";
 import { FieldError } from "react-hook-form";
 
 const labelVariants = cva(

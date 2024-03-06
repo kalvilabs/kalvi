@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "~lib/tw-class-merge"
+import { cn } from "../lib/tw-class-merge"
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}

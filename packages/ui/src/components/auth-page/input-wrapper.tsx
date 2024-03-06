@@ -1,4 +1,4 @@
-import { cn } from "../../../src/lib";
+import { cn } from "../../lib";
 import React from "react";
 import { BaseSyntheticEvent } from "react";
 /**
