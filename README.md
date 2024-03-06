@@ -68,10 +68,36 @@ pnpm run frontend:run
 
 ```
 
-# How to run Django Commands
+**How to run Django Commands**
 
 ```
 
 docker-compose run api poetry run python manage.py makemigration
 
 ```
+
+## LICENSE
+The code in this repository is licensed under version 3 of the AGPL unless otherwise noted. Please see the [LICENSE](https://github.com/kalvilabs/kalvi/blob/master/LICENSE) file for details.
+
+## Issue Tracker
+We use Github Issues for our issue tracker. You can search
+[previously reported issues](https://github.com/kalvilabs/kalvi/issues).  If you need to report a bug, or want to discuss
+a new feature before you implement it, please [create new issue](https://github.com/kalvilabs/kalvi/issues/new/choose).
+
+## Reporting Security Issues
+Please do not report security issues in public. Please email admin@kalvi.co.
+
+## Getting Help
+If you're having trouble, we have discussion forums at
+[Discord](https://discord.gg/R5MUnxrECk) where you can connect with others in the community.
+
+## ❤️ Contribute
+
+There are many ways to contribute to Kalvi, including:  
+-   Submitting  [documentation]([https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=%5BBUG%5D](https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=documentation&projects=&template=documentation.yml&title=%5BDOC%5D)), [bugs](https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=%5BBUG%5D) and [feature requests](https://github.com/kalvilabs/kalvi/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml&title=%5BFEAT%5D)  for various components.
+-   Speaking or writing about Kalvi or any other ecosystem integration and  [letting us know](https://discord.com/invite/R5MUnxrECk)!
+-   Upvoting  [popular feature requests](https://github.com/kalvilabs/kalvi/issues)  to show your support.
+
+## We are still in Pre-Alpha
+
+We are currently still in Pre-Alpha and under active developement and steady progress. 
