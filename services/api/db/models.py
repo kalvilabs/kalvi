@@ -1,5 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser, PermissionsMixin
+from django.core.validators import URLValidator
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+import pytz
 
 #TODO: This entire class will be modified later based on the frontend integration.
 
@@ -61,8 +66,53 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
 
+    class Meta:
+        verbose_name = "User"
+        verbose_name_plural = "Users"
+        db_table = "users"
+        ordering = ("-created_at",)
+
     def __str__(self):
-        return self.email
+        return f"{self.name} <{self.email}>"
+
+class OrganizationSettings(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, unique=True)
+    logo = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
+    icon = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
+    theme = models.CharField(max_length=20)  # Assuming you have predefined themes
+    email = models.EmailField(max_length=50)
+    url = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
+    TIMEZONE_CHOICES = tuple(zip(pytz.all_timezones, pytz.all_timezones))
+    timezone = models.CharField(
+        max_length=255, default="UTC", choices=TIMEZONE_CHOICES
+    )
+    class Meta:
+        verbose_name = 'OrganizationSettings'
+        verbose_name_plural = 'OrganizationSettings'
+        db_table = "OrganizationSettings"
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True, null=True, max_length=500)
+    date_of_birth= models.DateField(blank=True, null=True)
+    profile_image_url = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])  # Accepts valid URLs
+    class Meta:
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profiles'
+        db_table = "Profiles"
+
+    def __str__(self):
+        return f"{self.user.name} <{self.user.email}>"
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def save_profile(sender, instance, **kwargs):
+    instance.profile.save()
     
     
     
