@@ -1,6 +1,6 @@
 from django.urls import path
 from kalvi.api.views import SignInEndPoint, SignUpEndPoint, UserProfileView, UserChangePasswordView, SendPasswordResetEmailView, UserPasswordResetView
-
+from db.Oauth.views import GoogleSocialAuthView
 
 urlpatterns = [
     path(
@@ -32,5 +32,10 @@ urlpatterns = [
         "reset-password/<str:uid>/<str:token>/",
         UserPasswordResetView.as_view(),
         name="reset-password-through-mail",
+    ),
+    path(
+        "google/",
+        GoogleSocialAuthView.as_view(),
+        name="GoogleSignIn"
     )
 ]
