@@ -19,7 +19,7 @@ const textVariants = cva("", {
 export interface TextboxProps
   extends React.HTMLAttributes<HTMLParagraphElement>,
     VariantProps<typeof textVariants> {
-  fieldError?: FieldError | boolean | undefined;
+  fieldError?: FieldError | boolean;
 }
 
 export const Textbox = React.forwardRef<HTMLParagraphElement, TextboxProps>(
