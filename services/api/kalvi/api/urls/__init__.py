@@ -1,6 +1,6 @@
 from django.urls import path
 from kalvi.api.views import SignInEndPoint, SignUpEndPoint, UserProfileView, UserChangePasswordView, SendPasswordResetEmailView, UserPasswordResetView
-from db.Oauth.views import GoogleSocialAuthView
+from db.Oauth.views import GoogleSocialAuthView, GithubSocialAuthView
 
 urlpatterns = [
     path(
@@ -36,6 +36,11 @@ urlpatterns = [
     path(
         "google/",
         GoogleSocialAuthView.as_view(),
-        name="GoogleSignIn"
+        name="google-sign-in"
+    ),
+    path(
+        "github/",
+        GithubSocialAuthView.as_view(),
+        name="github-sign-in"
     )
 ]
