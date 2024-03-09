@@ -7,5 +7,5 @@ export type TLoginSuccessResponse = {
 };
 
 export type TLoginErrorResponse = {
-  errors: string;
+  errors: string[];
 };
