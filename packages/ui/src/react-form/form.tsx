@@ -4,6 +4,7 @@ import { Form, FormField, useFormField } from "./form-field";
 import { FormItem } from "./form-item";
 import { FormLabel } from "./form-label";
 import { FormMessage } from "./form-message";
+import { FormRootError } from "./form-root-error";
 
 
 export const ReactForm = {
@@ -15,4 +16,5 @@ export const ReactForm = {
   FormDescription,
   FormMessage,
   FormField,
+  FormRootError
 }
