@@ -13,29 +13,23 @@ def validate_confirm_password(password,confirm_password):
     return True
 
 class SignUpEndPointSerializer(serializers.ModelSerializer):
-    confirm_password = serializers.CharField(style={'input_type': 'password'}, write_only=True)
+    password = serializers.CharField(max_length=255, style={'input_type' : 'password'}, write_only=True)
     class Meta:
         model = User
-        fields= ['email', 'name', 'password', 'confirm_password']
-        extra_kwargs={
-            'password': {'write_only': True}
-        }
+        fields= ['email', 'name', 'password']
     #To validate whether the entered email and password are correct.
     def validate(self, data):
         email = data.get('email')
         if not email:
             raise ValidationError("Email field is required")
-        password, confirm_password = data.get('password'), data.get('confirm_password')
-        if not password or not confirm_password:
-            raise ValidationError("Either password or confirm_password is empty")
+        password= data.get('password')
+        if not password:
+            raise ValidationError("password is empty")
         try:
             validate_email(email)
         except:
-            raise serializers.ValidationError("Please provide a valid email address.")
-        if validate_confirm_password(password,confirm_password):
-            return data
-        else:
-            raise serializers.ValidationError("Password and confirm password don't match.")
+            raise serializers.ValidationError("Please provide a valid email address.")        
+        return data
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
         
