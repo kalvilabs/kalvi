@@ -100,4 +100,4 @@ There are many ways to contribute to Kalvi, including:
 
 ## We are still in Pre-Alpha
 
-We are currently still in Pre-Alpha and under active developement and steady progress. 
+Kalvi is still in early development (alpha) and should not be used (yet) on production, as we reach stability we will release a stable version and add more features.
