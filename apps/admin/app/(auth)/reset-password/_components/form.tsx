@@ -75,10 +75,13 @@ export function ResetPasswordForm() {
             )}
           />
           <AuthPage.FormFooter isMarginTop>
+          <AuthPage.FooterFlexLine>
             <Button type="submit">Reset Password</Button>
             <Link href="/login" passHref legacyBehavior>
               <Linktag textSize="sm">Back to Sign In</Linktag>
             </Link>
+            </AuthPage.FooterFlexLine>
+            <ReactForm.FormRootError />
           </AuthPage.FormFooter>
         </AuthPage.FormWrapper>
       </ReactForm.Form>
