@@ -14,7 +14,7 @@ urlpatterns = [
         name="kalvi-sign-in",
     ),
     path(
-        "profile/",
+        "user/",
         UserProfileView.as_view(),
         name="user-detail",
     ),

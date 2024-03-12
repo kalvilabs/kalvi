@@ -22,6 +22,7 @@ class UserManager(BaseUserManager):
         )
         user.set_password(password)
         user.save(using=self._db)
+        Profile.objects.create(user=user)  # Create a profile for the user
         return user
 
     def create_superuser(self, email, name, password=None):
@@ -105,14 +106,6 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.name} <{self.user.email}>"
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def save_profile(sender, instance, **kwargs):
-    instance.profile.save()
     
     
     

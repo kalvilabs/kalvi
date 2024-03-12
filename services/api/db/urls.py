@@ -4,9 +4,9 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
-    path('bio/', ProfileViewSet.as_view({'get': 'bio', 'post': 'bio', 'put': 'bio', 'delete': 'bio'})),
-    path('date_of_birth/', ProfileViewSet.as_view({'get': 'date_of_birth', 'post': 'date_of_birth', 'put': 'date_of_birth', 'delete': 'date_of_birth'})),
-    path('profile_image/', ProfileViewSet.as_view({'get': 'profile_image', 'post': 'profile_image', 'put': 'profile_image', 'delete': 'profile_image'})),
+    path('user-profile/', ProfileViewSet.as_view({'get': 'retrieve'}), name='profile-detail'),
+    path('user-profile/<str:field_name>/', ProfileViewSet.as_view({'get': 'retrieve'}), name='profile-detail-field'),
+    path('user-profile/update/<str:field_name>/', ProfileViewSet.as_view({'post': 'update_field'}), name='profile-update-field'),
     path('organization-settings/', OrganizationSettingsViewSet.as_view({
         'get': 'retrieve',
         'post': 'create'

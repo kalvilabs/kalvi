@@ -7,10 +7,17 @@ import { ReactForm } from "@repo/ui/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Input, Linktag, Textbox } from "@repo/ui/partials";
 import Link from "next/link";
-
-
+import axios, { AxiosError } from "axios";
+import { REGISTER_URL } from "../../../../api-routes";
+import {
+  TRegistrationErrorResponse,
+  TRegistrationSuccessResponse,
+} from "../../../../types/authentication/register";
+import { useRouter } from "next/navigation";
 
 export function RegisterationForm() {
+  const router = useRouter();
+
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -21,8 +28,46 @@ export function RegisterationForm() {
     },
   });
 
-  const submitfunction = () => {
-    console.log("Submitted");
+  const submitFunction = () => {
+    const data = {
+      email: form.getValues("email"),
+      password: form.getValues("password"),
+      name: `${form.getValues("firstName")} ${form.getValues("lastName")}`,
+    };
+
+    axios
+      .post<TRegistrationSuccessResponse>(REGISTER_URL, data)
+      .then((response) => {
+        document.cookie = `Authorization=${response.data.token.access}`;
+        document.cookie = `Refresh=${response.data.token.refresh}`;
+        router.push("/dashboard");
+      })
+      .catch((e: AxiosError<TRegistrationErrorResponse>) => {
+        if (!e.response) return;
+        const error = e.response.data
+        if (error) {
+          error.email &&
+            form.setError("email", {
+              type: "server",
+              message: error.email[0],
+            });
+          error.password &&
+            form.setError("password", {
+              type: "server",
+              message: error.password[0],
+            });
+          error.name &&
+            form.setError("firstName", {
+              type: "server",
+              message: error.name[0],
+            });
+          error.errors &&
+            form.setError("root", {
+              type: "server",
+              message: error.errors,
+            });
+        }
+      });
   };
 
   return (
@@ -39,7 +84,7 @@ export function RegisterationForm() {
         }
       />
       <ReactForm.Form {...form}>
-        <AuthPage.FormWrapper onSubmit={form.handleSubmit(submitfunction)}>
+        <AuthPage.FormWrapper onSubmit={form.handleSubmit(submitFunction)}>
           <ReactForm.FormField
             control={form.control}
             name="firstName"

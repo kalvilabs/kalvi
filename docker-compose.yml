@@ -19,6 +19,7 @@ services:
       - DATABASE_USER=kalvi
       - DATABASE_PASSWORD=kalvi
       - DATABASE_HOST=db
+      - REDIS_HOST=redis
   db:
     image: postgres:15
     volumes:
@@ -29,5 +30,7 @@ services:
       - POSTGRES_USER=kalvi
       - POSTGRES_PASSWORD=kalvi
       - POSTGRES_DB=kalvi
+  redis:
+    image: redis:alpine
 volumes:
   postgres_data:
