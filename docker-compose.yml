@@ -23,6 +23,7 @@ services:
       - EMAIL_PORT=587
       - EMAIL_HOST_USER=USER
       - EMAIL_HOST_PASSWORD=PASSWORD
+      - REDIS_HOST=redis
   db:
     image: postgres:15
     volumes:
@@ -33,5 +34,7 @@ services:
       - POSTGRES_USER=kalvi
       - POSTGRES_PASSWORD=kalvi
       - POSTGRES_DB=kalvi
+  redis:
+    image: redis:alpine
 volumes:
   postgres_data:

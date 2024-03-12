@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "~lib/tw-class-merge"
+import { cn } from "../../src/lib/tw-class-merge";
 
 const Card = React.forwardRef<
   HTMLDivElement,

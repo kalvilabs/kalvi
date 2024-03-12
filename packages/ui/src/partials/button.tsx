@@ -2,7 +2,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "../../src/lib/tw-class-merge";
+import { cn } from "../lib/tw-class-merge";
 import { LucideIcon } from "lucide-react";
 
 const buttonVariants = cva(
@@ -10,7 +10,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "grow bg-black text-white hover:bg-black/80",
+        default: "bg-black text-white hover:bg-black/80",
         provider: "border text-black hover:bg-black/5",
       },
       size: {
@@ -54,7 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           buttonVariants({ variant, size, className }),
           width === "full" && "w-full",
-          columnSpan && `col-span-${columnSpan}`
+          columnSpan && `col-span-${columnSpan} grow`
         )}
         ref={ref}
         {...props}

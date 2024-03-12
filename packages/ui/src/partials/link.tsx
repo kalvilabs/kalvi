@@ -1,23 +1,24 @@
 import React from "react"
-import { cn } from "../lib/tw-class-merge"
+import { cn } from "../lib/tw-class-merge";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const textVariants = cva(
-  "ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md",
+  "ring-offset-white inline-flex gap-3 items-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:cursor-pointer",
   {
     variants: {
       variant: {
-        default: "inline text-stone-500",
+        inline: "text-stone-500",
+        button: "text-black py-2",
         fieldError: "mt-1 text-xs",
       },
       textSize: {
         default: "text-base",
         sm: "text-sm",
         lg: "text-lg",
-      }
+      },
     },
     defaultVariants: {
-      variant: "default",
+      variant: "inline",
       textSize: "default"
     },
   }
