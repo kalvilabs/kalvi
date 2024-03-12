@@ -14,8 +14,17 @@ import {
   Linktag,
 } from "@repo/ui/partials";
 import Link from "next/link";
+import {
+  TLoginErrorResponse,
+  TLoginSuccessResponse,
+} from "../../../../types/authentication/login";
+import axios, { AxiosError } from "axios";
+import { LOGIN_URL } from "../../../../api-routes";
+import { useRouter } from "next/navigation";
 
 export function LoginForm() {
+  const router = useRouter();
+
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -24,8 +33,24 @@ export function LoginForm() {
     },
   });
 
-  const submitfunction = () => {
-    console.log("Submitted");
+  const submitFunction = (data: TFormSchema) => {
+    axios
+      .post<TLoginSuccessResponse>(LOGIN_URL, data)
+      .then((response) => {
+        document.cookie = `Authorization=${response.data.token.access}`;
+        document.cookie = `Refresh=${response.data.token.refresh}`;
+        router.push("/dashboard");
+      })
+      .catch((e: AxiosError<TLoginErrorResponse>) => {
+        if (!e.response) return;
+        const error = e.response.data;
+        if (error) {
+          form.setError("root", {
+            type: "server",
+            message: error.errors[0],
+          });
+        }
+      });
   };
 
   return (
@@ -42,7 +67,9 @@ export function LoginForm() {
         }
       />
       <ReactForm.Form {...form}>
-        <AuthPage.FormWrapper onSubmit={form.handleSubmit(submitfunction)}>
+        <AuthPage.FormWrapper
+          onSubmit={form.handleSubmit(() => submitFunction(form.getValues()))}
+        >
           <ReactForm.FormField
             control={form.control}
             name="email"
@@ -89,6 +116,7 @@ export function LoginForm() {
                 <Linktag textSize="sm">Forgot Password?</Linktag>
               </Link>
             </AuthPage.FooterFlexLine>
+            <ReactForm.FormRootError />
           </AuthPage.FormFooter>
           <Button type="submit" columnSpan={2} width="full">
             Login
