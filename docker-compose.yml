@@ -19,6 +19,10 @@ services:
       - DATABASE_USER=kalvi
       - DATABASE_PASSWORD=kalvi
       - DATABASE_HOST=db
+      - EMAIL_HOST=smtp.gmail.com
+      - EMAIL_PORT=587
+      - EMAIL_HOST_USER=USER
+      - EMAIL_HOST_PASSWORD=PASSWORD
       - REDIS_HOST=redis
       - REDIS_PORT=6379
   db:

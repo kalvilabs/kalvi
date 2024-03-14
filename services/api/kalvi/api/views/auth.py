@@ -187,7 +187,7 @@ class TokenRefreshView(SimpleJWTTokenRefreshView):
             response = super().post(request, *args, **kwargs)
             return response
         except TokenError as e:
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Refresh token is required'}, status=status.HTTP_400_BAD_REQUEST)
         
 # Viewset class to generate magic link and sending it through email.       
 class MagicGenerateEndpoint(APIView):
