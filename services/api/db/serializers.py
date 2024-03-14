@@ -5,6 +5,9 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.conf import settings
+from db.utils import  send_reset_password_email
+from django.urls import reverse
 
 #Method for validating password.
 def validate_confirm_password(password,confirm_password):
@@ -85,12 +88,14 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
         try:
             uid = urlsafe_base64_encode(force_bytes(user.id))
             token = PasswordResetTokenGenerator().make_token(user)
+            reset_link = reverse('reset-password-through-mail', kwargs={'uid': uid, 'token': token})
         except Exception:
             raise serializers.ValidationError("Failed to generate reset link")
         # TODO: Please specify the intended platform or service where you wish to reset your password.
-        link = f"http://localhost:3000/api/user/reset/{uid}/{token}"
+        reset_url = f'http://localhost:8000{reset_link}'
+        send_reset_password_email(user.email, reset_url)
         return attrs
-
+    
 class UserPasswordResetSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=255, style={'input_type':'password'}, write_only=True)
     confirm_password = serializers.CharField(max_length=255, style={'input_type':'password'}, write_only=True)
