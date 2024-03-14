@@ -20,6 +20,7 @@ services:
       - DATABASE_PASSWORD=kalvi
       - DATABASE_HOST=db
       - REDIS_HOST=redis
+      - REDIS_PORT=6379
   db:
     image: postgres:15
     volumes:
