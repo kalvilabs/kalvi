@@ -121,17 +121,22 @@ class UserProfileView(APIView):
 #Viewset class for sending an email to reset the password in case of forgotten passwords.
 class SendPasswordResetEmailView(APIView):
     renderer_classes = [UserRenderer]
+    permission_classes = [AllowAny] 
     def post(self, request, format=None):
-        serializer = SendPasswordResetEmailSerializer(data=request.data)
         try:
+            current_site = request.META.get("HTTP_ORIGIN")
+            serializer = SendPasswordResetEmailSerializer(data=request.data, context={'current_site': current_site})
             serializer.is_valid(raise_exception=True)
             return Response({'message': 'Password Reset link sent. Please check your Email'}, status=status.HTTP_200_OK)
         except ValidationError as e:
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception:
+            return Response({'error': 'Please try after some time'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 #viewset class for changing password from local browser after getting email rest link.
 class UserPasswordResetView(APIView):
     renderer_classes = [UserRenderer]
+    permission_classes = [AllowAny] 
     def post(self, request, uid, token, format=None):
         serializer = UserPasswordResetSerializer(data=request.data, context={'uid':uid, 'token':token})
         try:

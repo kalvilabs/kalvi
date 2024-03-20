@@ -3,9 +3,11 @@ from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
 from db.Oauth.serializers import GoogleSocialAuthSerializer, GithubSocialAuthSerializer
 from rest_framework.exceptions import ValidationError
+from rest_framework.permissions import AllowAny
 
 class GoogleSocialAuthView(GenericAPIView):
     serializer_class = GoogleSocialAuthSerializer
+    permission_classes = [AllowAny]
     def post(self, request):
         """
         POST with "auth_token"
@@ -24,6 +26,7 @@ class GoogleSocialAuthView(GenericAPIView):
         
 class GithubSocialAuthView(GenericAPIView):
     serializer_class=GithubSocialAuthSerializer
+    permission_classes = [AllowAny]
     def post(self, request):
         """
         POST with "code"
