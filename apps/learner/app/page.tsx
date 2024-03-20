@@ -42,25 +42,6 @@ export default function Home() {
                   />
                 </div>
               </div>
-
-              {/* right side */}
-              <div className="flex items-center gap-x-2.5">
-                {/* icons & cta buttons */}
-                <div className="flex-1 lg:flex md:flex hidden items-center justify-end gap-x-2.5">
-                  <Link
-                    href="/login"
-                    className="font-semibold relative inline-flex items-center justify-center gap-x-1.5 whitespace-nowrap capitalize box-border px-3.5 py-2 text-sm rounded-md hover:text-opacity-80"
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    href="/register"
-                    className="font-semibold bg-[#006FEE] text-white relative inline-flex items-center justify-center gap-x-1.5 whitespace-nowrap capitalize box-border px-3.5 py-2 text-sm rounded-md hover:text-opacity-80"
-                  >
-                    Sign up
-                  </Link>
-                </div>
-              </div>
             </nav>
           </div>
 
