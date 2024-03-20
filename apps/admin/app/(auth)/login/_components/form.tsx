@@ -47,7 +47,7 @@ export function LoginForm() {
         if (error) {
           form.setError("root", {
             type: "server",
-            message: error.errors[0],
+            message: error.errors,
           });
         }
       });
