@@ -1,3 +1,3 @@
-from .auth import UserChangePasswordView, SignUpEndPoint, SignInEndPoint, UserProfileView, SendPasswordResetEmailView, UserPasswordResetView
+from .auth import UserChangePasswordView, SignUpEndPoint, SignInEndPoint, UserProfileView, SendPasswordResetEmailView, UserPasswordResetView, SignOutEndpoint, TokenRefreshView, MagicGenerateEndpoint, MagicSignInEndpoint
 
 
