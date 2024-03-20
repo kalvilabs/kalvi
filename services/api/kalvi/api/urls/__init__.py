@@ -1,5 +1,5 @@
 from django.urls import path
-from kalvi.api.views import SignInEndPoint, SignUpEndPoint, UserProfileView, UserChangePasswordView, SendPasswordResetEmailView, UserPasswordResetView
+from kalvi.api.views import SignInEndPoint, SignUpEndPoint, UserProfileView, UserChangePasswordView, SendPasswordResetEmailView, UserPasswordResetView, SignOutEndpoint, TokenRefreshView, MagicGenerateEndpoint, MagicSignInEndpoint
 from db.Oauth.views import GoogleSocialAuthView, GithubSocialAuthView
 
 urlpatterns = [
@@ -42,5 +42,23 @@ urlpatterns = [
         "github/",
         GithubSocialAuthView.as_view(),
         name="github-sign-in"
+    ),
+    path('token/refresh/',
+        TokenRefreshView.as_view(),
+        name='token_refresh'
+    ),
+    path("sign-out/",
+        SignOutEndpoint.as_view(),
+        name="sign-out"
+    ),
+    path(
+        "magic-generate/",
+        MagicGenerateEndpoint.as_view(),
+        name="magic-generate",
+    ),
+    path(
+        "magic-sign-in/",
+        MagicSignInEndpoint.as_view(),
+        name="magic-sign-in"
     )
 ]
