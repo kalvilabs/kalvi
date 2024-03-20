@@ -5,7 +5,7 @@ from django.conf import settings
 
 
 #TODO: This file will be used for various common email tasks.
-def send_reset_password_email(recipient_email, reset_url):
+def send_reset_password_email(recipient_email, uid, token, current_site):
     try:
         connection = get_connection(
         backend=settings.EMAIL_BACKEND,
@@ -18,6 +18,8 @@ def send_reset_password_email(recipient_email, reset_url):
         from_email = settings.EMAIL_HOST_USER
         to = [recipient_email]
         # Load the HTML template
+        relative_link = f"/home/reset-password/?uidb64={uid}&token={token}&email={recipient_email}"
+        reset_url = str(current_site) + relative_link
         html_content = render_to_string('reset_password_email.html', {'reset_url': reset_url, 'email': to[0]})
         # Create the email body with both HTML and plain text versions
         text_content = strip_tags(html_content)
