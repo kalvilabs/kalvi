@@ -88,12 +88,10 @@ class SendPasswordResetEmailSerializer(serializers.Serializer):
         try:
             uid = urlsafe_base64_encode(force_bytes(user.id))
             token = PasswordResetTokenGenerator().make_token(user)
-            reset_link = reverse('reset-password-through-mail', kwargs={'uid': uid, 'token': token})
+            current_site = self.context.get('current_site')
         except Exception:
             raise serializers.ValidationError("Failed to generate reset link")
-        # TODO: Please specify the intended platform or service where you wish to reset your password.
-        reset_url = f'http://localhost:8000{reset_link}'
-        send_reset_password_email(user.email, reset_url)
+        send_reset_password_email(user.email, uid, token, current_site)
         return attrs
     
 class UserPasswordResetSerializer(serializers.Serializer):
