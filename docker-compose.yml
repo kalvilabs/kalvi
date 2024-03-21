@@ -25,6 +25,9 @@ services:
       - EMAIL_HOST_PASSWORD=PASSWORD
       - REDIS_HOST=redis
       - REDIS_PORT=6379
+      - GOOGLE_CLIENT_ID=client_Id
+      - GITHUB_CLIENT_ID=client_id
+      - GITHUB_SECRET=secret
   db:
     image: postgres:15
     volumes:
