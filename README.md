@@ -72,7 +72,7 @@ pnpm run frontend:run
 
 ```
 
-docker-compose run api poetry run python manage.py makemigration
+docker-compose run api poetry run python manage.py makemigrations
 
 ```
 

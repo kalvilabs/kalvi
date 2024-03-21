@@ -32,7 +32,7 @@ class GithubSocialAuthSerializer(serializers.Serializer):
             user_data=github.Github.get_github_user(access_token)
             if not user_data:
                  raise serializers.ValidationError('The token is invalid or expired. Please login again.')
-            name = user_data['name']
+            name = user_data['login']
             email = user_data['email']
             provider='github'
             return register_social_user(provider=provider, email=email, name=name)
