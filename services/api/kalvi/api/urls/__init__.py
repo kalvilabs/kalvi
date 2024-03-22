@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from kalvi.api.views import SignInEndPoint, SignUpEndPoint, UserProfileView, UserChangePasswordView, SendPasswordResetEmailView, UserPasswordResetView, SignOutEndpoint, TokenRefreshView, MagicGenerateEndpoint, MagicSignInEndpoint
 from db.Oauth.views import GoogleSocialAuthView, GithubSocialAuthView
+from db.views import ProfileAPIView
 
 urlpatterns = [
     path(
@@ -14,7 +15,7 @@ urlpatterns = [
         name="kalvi-sign-in",
     ),
     path(
-        "profile/",
+        "user/",
         UserProfileView.as_view(),
         name="user-detail",
     ),
@@ -60,5 +61,10 @@ urlpatterns = [
         "magic-sign-in/",
         MagicSignInEndpoint.as_view(),
         name="magic-sign-in"
-    )
+    ),
+    path(
+        'profile/',
+        ProfileAPIView.as_view(),
+        name='profile'
+    ),
 ]
