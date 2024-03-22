@@ -12,6 +12,8 @@ djangorestframework = "^3.14.0"
 djangorestframework-simplejwt = "^5.3.1"
 psycopg = "^3.1.18"
 google-api-python-client = "^2.121.0"
+redis = "^5.0.3"
+django-cors-headers = "^4.3.1"
 
 
 [build-system]
