@@ -1,7 +1,7 @@
 from django.urls import path, include
 from kalvi.api.views import SignInEndPoint, SignUpEndPoint, UserProfileView, UserChangePasswordView, SendPasswordResetEmailView, UserPasswordResetView, SignOutEndpoint, TokenRefreshView, MagicGenerateEndpoint, MagicSignInEndpoint
 from db.Oauth.views import GoogleSocialAuthView, GithubSocialAuthView
-from db.views import ProfileAPIView
+from db.views import ProfileAPIView, OrganizationSettingsAPIView
 
 urlpatterns = [
     path(
@@ -67,4 +67,7 @@ urlpatterns = [
         ProfileAPIView.as_view(),
         name='profile'
     ),
+    path('organization-settings/',
+        OrganizationSettingsAPIView.as_view(),
+        name='organization-settings')
 ]

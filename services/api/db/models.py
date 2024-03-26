@@ -2,9 +2,8 @@ from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 from django.conf import settings
-from django.dispatch import receiver
 from django.core.validators import URLValidator
-from urllib.parse import urlparse
+import pytz
 
 class UserManager(BaseUserManager):
     def create_user(self, email, name, password=None, **kwargs):
@@ -81,3 +80,19 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.name} <{self.user.email}>"
+    
+class OrganizationSettings(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    logo = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
+    icon = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
+    theme = models.CharField(max_length=20)  # Assuming you have predefined themes
+    email = models.EmailField(max_length=50)
+    url = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
+    TIMEZONE_CHOICES = tuple(zip(pytz.all_timezones, pytz.all_timezones))
+    timezone = models.CharField(
+        max_length=255, default="UTC", choices=TIMEZONE_CHOICES
+    )
+    class Meta:
+        verbose_name = 'OrganizationSettings'
+        verbose_name_plural = 'OrganizationSettings'
+        db_table = "OrganizationSettings"
