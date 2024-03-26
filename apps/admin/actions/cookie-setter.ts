@@ -17,5 +17,5 @@ export async function cookieSetter({ access, refresh }: ILoginUserAction) {
     httpOnly: true,
     secure: true,
   });
-  redirect("/admin/dashboard")
+  redirect("/dashboard")
 }
