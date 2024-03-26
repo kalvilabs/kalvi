@@ -1,10 +1,12 @@
 "use client";
 
-import { AuthPage, AuthProviderButton } from "@repo/ui/components";
-import { formSchema, TFormSchema } from "./form-schema";
 import { useForm } from "react-hook-form";
-import { ReactForm } from "@repo/ui/forms";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import axios, { AxiosError } from "axios";
+
+import { AuthPage, AuthProviderButton } from "@repo/ui/components";
+import { ReactForm } from "@repo/ui/forms";
 import {
   Button,
   Checkbox,
@@ -13,17 +15,16 @@ import {
   Label,
   Linktag,
 } from "@repo/ui/partials";
-import Link from "next/link";
+
+import { LOGIN_URL } from "@/api-routes";
 import {
   TLoginErrorResponse,
   TLoginSuccessResponse,
-} from "../../../../types/authentication/login";
-import axios, { AxiosError } from "axios";
-import { LOGIN_URL } from "../../../../api-routes";
-import { useRouter } from "next/navigation";
+} from "@/types";
+import { cookieSetter } from "@/actions";
+import { formSchema, TFormSchema } from "./form-schema";
 
 export function LoginForm() {
-  const router = useRouter();
 
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
@@ -33,24 +34,24 @@ export function LoginForm() {
     },
   });
 
-  const submitFunction = (data: TFormSchema) => {
-    axios
-      .post<TLoginSuccessResponse>(LOGIN_URL, data)
-      .then((response) => {
-        document.cookie = `Authorization=${response.data.token.access}`;
-        document.cookie = `Refresh=${response.data.token.refresh}`;
-        router.push("/dashboard");
-      })
-      .catch((e: AxiosError<TLoginErrorResponse>) => {
-        if (!e.response) return;
-        const error = e.response.data;
-        if (error) {
-          form.setError("root", {
-            type: "server",
-            message: error.errors,
-          });
-        }
+  const onSubmit = async () => {
+    try {
+      const response = await axios.post<TLoginSuccessResponse>(
+        LOGIN_URL,
+        form.getValues()
+      );
+      await cookieSetter({
+        access: response.data.token.access,
+        refresh: response.data.token.refresh,
       });
+    } catch (e) {
+      console.log(e);
+      const error = e as AxiosError<TLoginErrorResponse>;
+      form.setError("root", {
+        type: "manual",
+        message: error.response?.data.errors,
+      });
+    }
   };
 
   return (
@@ -68,7 +69,7 @@ export function LoginForm() {
       />
       <ReactForm.Form {...form}>
         <AuthPage.FormWrapper
-          onSubmit={form.handleSubmit(() => submitFunction(form.getValues()))}
+          onSubmit={form.handleSubmit(onSubmit)}
         >
           <ReactForm.FormField
             control={form.control}

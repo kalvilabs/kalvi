@@ -1,22 +1,23 @@
 "use client";
 
-import { AuthPage, AuthProviderButton } from "@repo/ui/components";
-import { formSchema, TFormSchema } from "./form-schema";
-import { useForm } from "react-hook-form";
-import { ReactForm } from "@repo/ui/forms";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button, Input, Linktag, Textbox } from "@repo/ui/partials";
 import Link from "next/link";
+import { useForm } from "react-hook-form";
 import axios, { AxiosError } from "axios";
-import { REGISTER_URL } from "../../../../api-routes";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+import { AuthPage, AuthProviderButton } from "@repo/ui/components";
+import { Button, Input, Linktag, Textbox } from "@repo/ui/partials";
+import { ReactForm } from "@repo/ui/forms";
+
+import { REGISTER_URL } from "@/api-routes";
 import {
   TRegistrationErrorResponse,
   TRegistrationSuccessResponse,
-} from "../../../../types/authentication/register";
-import { useRouter } from "next/navigation";
+} from "@/types";
+import { cookieSetter } from "@/actions";
+import { formSchema, TFormSchema } from "./form-schema";
 
 export function RegisterationForm() {
-  const router = useRouter();
 
   const form = useForm<TFormSchema>({
     resolver: zodResolver(formSchema),
@@ -28,23 +29,27 @@ export function RegisterationForm() {
     },
   });
 
-  const submitFunction = () => {
+  const onSubmit = async() => {
     const data = {
       email: form.getValues("email"),
       password: form.getValues("password"),
       name: `${form.getValues("firstName")} ${form.getValues("lastName")}`,
     };
 
-    axios
-      .post<TRegistrationSuccessResponse>(REGISTER_URL, data)
-      .then((response) => {
-        document.cookie = `Authorization=${response.data.token.access}`;
-        document.cookie = `Refresh=${response.data.token.refresh}`;
-        router.push("/dashboard");
-      })
-      .catch((e: AxiosError<TRegistrationErrorResponse>) => {
-        if (!e.response) return;
-        const error = e.response.data
+    try {
+      const response = await axios.post<TRegistrationSuccessResponse>(
+        REGISTER_URL,
+        data
+      );
+      cookieSetter({
+        access: response.data.token.access,
+        refresh: response.data.token.refresh,
+      });
+      // TODO: Successful registration popup
+    } catch (e) {
+      const er = e as AxiosError<TRegistrationErrorResponse>;
+      if (!er.response) return;
+        const error = er.response.data
         if (error) {
           error.email &&
             form.setError("email", {
@@ -67,7 +72,8 @@ export function RegisterationForm() {
               message: error.errors,
             });
         }
-      });
+
+    }
   };
 
   return (
@@ -84,7 +90,7 @@ export function RegisterationForm() {
         }
       />
       <ReactForm.Form {...form}>
-        <AuthPage.FormWrapper onSubmit={form.handleSubmit(submitFunction)}>
+        <AuthPage.FormWrapper onSubmit={form.handleSubmit(onSubmit)}>
           <ReactForm.FormField
             control={form.control}
             name="firstName"
