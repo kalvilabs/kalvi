@@ -83,7 +83,7 @@ export function RegisterationForm() {
         cardDescriptionComponent={
           <span>
             Already have an account?{" "}
-            <Link href="/login" legacyBehavior passHref>
+            <Link href="/home/login" legacyBehavior passHref>
               <Linktag textSize="sm">Sign In</Linktag>
             </Link>
           </span>
