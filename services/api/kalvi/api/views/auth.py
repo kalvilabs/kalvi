@@ -5,7 +5,7 @@ from db.serializers import SignUpEndPointSerializer, SignInEndPointSerializer, U
 from rest_framework_simplejwt.views import TokenRefreshView as SimpleJWTTokenRefreshView
 from django.contrib.auth import authenticate
 from db.renderer import UserRenderer
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework.permissions import AllowAny
 from django.utils.encoding import smart_str
@@ -155,19 +155,24 @@ class UserPasswordResetView(APIView):
         except ValidationError as e:
             return Response({'error': e.detail}, status=status.HTTP_400_BAD_REQUEST)
         
-# Viewset class for blocking refresh tokens after logging out.       
+# Viewset class for blocking tokens after logging out.       
 class SignOutEndpoint(APIView):
     def post(self, request):
         refresh_token = request.data.get('refresh_token')
-        if refresh_token:
+        access_token = request.headers.get('Authorization').split(' ')[1] #We are catching access tokens from authorization header.
+        if refresh_token:  
             try:
                 # Connect to Redis
                 redis_conn = get_redis_connection()
-                token = str(RefreshToken(refresh_token))
-                # Blacklist the token in Redis
-                expiration_time = int(settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'].total_seconds())
-                redis_conn.set(token, 'blacklisted')
-                redis_conn.expire(token, expiration_time)
+                refresh_token_str = str(RefreshToken(refresh_token))
+                access_token_str = str(AccessToken(access_token))
+                # Blacklist tokens in Redis
+                refresh_exp_time = int(settings.SIMPLE_JWT['REFRESH_TOKEN_LIFETIME'].total_seconds())
+                access_exp_time = int(settings.SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'].total_seconds())
+                with redis_conn.pipeline() as pipe:
+                    pipe.set(refresh_token_str, 'blacklisted', ex=refresh_exp_time)
+                    pipe.set(access_token_str, 'blacklisted', ex=access_exp_time)
+                    pipe.execute()
                 return Response({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)
             except Exception:
                 return Response({'error': 'Please try after some time'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
