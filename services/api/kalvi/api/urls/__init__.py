@@ -5,69 +5,69 @@ from db.views import ProfileAPIView, OrganizationSettingsAPIView
 
 urlpatterns = [
     path(
-        "sign-up/",
+        "common/sign-up/",
         SignUpEndPoint.as_view(),
         name="kalvi-sign-up",
     ),
     path(
-        "sign-in/",
+        "common/sign-in/",
         SignInEndPoint.as_view(),
         name="kalvi-sign-in",
     ),
     path(
-        "user/",
+        "common/user/",
         UserProfileView.as_view(),
         name="user-detail",
     ),
     path(
-        "update-password/",
+        "common/update-password/",
         UserChangePasswordView.as_view(),
         name="password-update",
     ),
     path(
-        "send-reset-password-email/",
+        "common/send-reset-password-email/",
         SendPasswordResetEmailView.as_view(),
         name="send-reset-email",
     ),
     path(
-        "reset-password/<str:uid>/<str:token>/",
+        "common/reset-password/<str:uid>/<str:token>/",
         UserPasswordResetView.as_view(),
         name="reset-password-through-mail",
     ),
     path(
-        "google/",
+        "common/google/auth/",
         GoogleSocialAuthView.as_view(),
         name="google-sign-in"
     ),
     path(
-        "github/",
+        "common/github/auth/",
         GithubSocialAuthView.as_view(),
         name="github-sign-in"
     ),
-    path('token/refresh/',
+    path('common/token/refresh/',
         TokenRefreshView.as_view(),
         name='token_refresh'
     ),
-    path("sign-out/",
+    path("common/sign-out/",
         SignOutEndpoint.as_view(),
         name="sign-out"
     ),
     path(
-        "magic-generate/",
+        "common/magic-generate/",
         MagicGenerateEndpoint.as_view(),
         name="magic-generate",
     ),
     path(
-        "magic-sign-in/",
+        "common/magic-sign-in/",
         MagicSignInEndpoint.as_view(),
         name="magic-sign-in"
     ),
     path(
-        'profile/',
+        'common/profile/',
         ProfileAPIView.as_view(),
         name='profile'
     ),
-    path('organization-settings/',
+    path('admin/organization-settings/',
         OrganizationSettingsAPIView.as_view(),
         name='organization-settings')
 ]
