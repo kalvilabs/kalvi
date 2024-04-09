@@ -2,8 +2,10 @@
 
 import { LOGOUT_URL } from "@/api-routes";
 import axios from "axios";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+
 
 export async function cookieDestroyer() {
   try {
@@ -20,9 +22,10 @@ export async function cookieDestroyer() {
     );
     cookies().delete("Authorization");
     cookies().delete("Refresh");
-    redirect("/");
   } catch (e) {
     // TODO: Handle error with a popup or message and prevent signout to prevent the token from being live
     console.error(e);
   }
+  revalidatePath('/home/login')
+  redirect("/home/login");
 }
