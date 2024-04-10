@@ -21,7 +21,7 @@ import {
   TLoginErrorResponse,
   TLoginSuccessResponse,
 } from "@/types";
-import { cookieSetter } from "@/actions";
+import { authCookieSetter } from "@/actions";
 import { formSchema, TFormSchema } from "./form-schema";
 
 export function LoginForm() {
@@ -40,7 +40,7 @@ export function LoginForm() {
         LOGIN_URL,
         form.getValues()
       );
-      await cookieSetter({
+      await authCookieSetter({
         access: response.data.token.access,
         refresh: response.data.token.refresh,
       });

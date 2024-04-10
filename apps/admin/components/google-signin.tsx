@@ -9,7 +9,7 @@ import {
   TGoogleSignInErrorResponse,
   TGoogleSignInSuccessResponse,
 } from "@/types";
-import { cookieSetter } from "@/actions";
+import { authCookieSetter } from "@/actions";
 import { useRouter } from "next/navigation";
 
 export const GoogleSignInButton: FC = () => {
@@ -29,7 +29,7 @@ export const GoogleSignInButton: FC = () => {
           auth_token: credential,
         }
       );
-      cookieSetter({
+      authCookieSetter({
         access: response.data.tokens.access,
         refresh: response.data.tokens.refresh,
       });

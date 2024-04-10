@@ -5,7 +5,7 @@ import { AuthProviderButton } from "@repo/ui/components";
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { cookieSetter } from "@/actions";
+import { authCookieSetter } from "@/actions";
 import axios from "axios";
 import { GITHUB_SIGN_IN_URL } from "@/api-routes";
 
@@ -20,7 +20,7 @@ export const GitHubSignInButton: FC<Props> = () => {
           code: credential,
         });
 
-        cookieSetter({
+        authCookieSetter({
           access: response.data.tokens.access,
           refresh: response.data.tokens.refresh,
         });
