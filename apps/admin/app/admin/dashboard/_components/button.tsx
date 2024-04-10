@@ -2,8 +2,8 @@
 
 import { Button } from "@repo/ui/partials";
 
-import { cookieDestroyer } from "@/actions";
+import { authCookieDestroy } from "@/actions";
 
 export function SignOutButton() {
-  return <Button onClick={() => cookieDestroyer()}>Sign Out</Button>;
+  return <Button onClick={() => authCookieDestroy()}>Sign Out</Button>;
 }
