@@ -2,73 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: 255, 137, 36;
+  --primary-foreground: 255, 255, 255;
 
-@layer base {
-  :root{
-    --primary: #006FEE;
-    --primary-foreground: #FFFFFF;
+  --secondary: 212, 212, 216;
+  --secondary-foreground: 17, 24, 28;
 
-    --success: #17c964;
-    --success-foreground: #11181C;
+  --success: 23, 201, 100;
+  --success-foreground: 17, 24, 28;
 
-    --warning: #f5a524;
-    --warning-foreground: #11181C;
+  --warning: 245, 165, 36;
+  --warning-foreground: 17, 24, 28;
 
-    --danger: #f31260;
-    --danger-foreground: #FFFFFF;
+  --danger: 243, 18, 96;
+  --danger-foreground: 255, 255, 255;
 
-    --focus: #006FEE;
-  }
+  --focus: var(--primary);
 
-  .default.light {
-    --background: #FFFFFF;
-    --foreground: #11181C;
+  --background: 255, 255, 255;
+  --foreground: 23, 23, 23;
+  --content-background: 255, 255, 255;
+  --admin-bg-color: 250, 250, 250;
 
-    --secondary: #d4d4d8;
-    --secondary-foreground: #11181C;
-    
-    --content-1: #FFFFFF;
-    --content-2: #f4f4f5;
-    --content-3: #e4e4e7;
-    --content-4: #d4d4d8;
-  }
+  --border-color: 229, 231, 235;
+  --input-border-color: 63, 63, 70;
+  --divider-color: 218, 222, 242;
+}
+html.dark {
+  --secondary: 63, 63, 70;
+  --secondary-foreground: 255, 255, 255;
 
-  .default.dark {
-    --background: #000000;
-    --foreground: #ECEDEE;
+  --background: 23, 23, 23;
+  --foreground: 236, 237, 238;
+  --content-background: 39, 39, 42;
 
-    --secondary: #3f3f46;
-    --secondary-foreground: #FFFFFF;
-    
-    --content-1: #18181b;
-    --content-2: #27272a;
-    --content-3: #3f3f46;
-    --content-4: #52525b;
-  }
+  --border-color: 63, 63, 70;
+  --input-border-color: 156, 166, 163;
+  --divider-color: 78, 84, 83;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  --header-height: 64px;
+  --sidebar-width: 280px;
+  --footer-height: 60px;
+}
+/* Custom Scrollbar css */
+/* Track */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f2f2f2;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #999;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
+
+.lucide {
+  stroke-width: 1.25px;
+}
+.lucide * {
+  /* Absolute Stroke width = true */
+  vector-effect: non-scaling-stroke;
 }
 
 @layer base {
-  html,
-  body {
-    scroll-behavior: smooth;
-    --header-height: 74px;
-    --footer-height: 60px;
-    --sidebar-width: 260px;
+  /* light - grid background */
+  .block-bg {
+    background-size: 2.5rem 2.5rem;
+    background-image: linear-gradient(90deg, #c0c0c045 0.063rem, #0000 0),
+      linear-gradient(180deg, #c0c0c045 0.063rem, #0000 0);
   }
-  /* Track */
-  ::-webkit-scrollbar {
-    width: 8px;
+  /* light - radial background */
+  .radial-bg {
+    background: radial-gradient(circle, #fff6 0, #fff 99%);
   }
-  ::-webkit-scrollbar-track {
-    background: #f2f2f2;
+  /* dark - grid background */
+  html.dark .block-bg {
+    background-size: 2.5rem 2.5rem;
+    background-image: linear-gradient(90deg, #202020 0.063rem, #0000 0),
+      linear-gradient(180deg, #202020 0.063rem, #0000 0);
   }
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background: #999;
+  /* dark - radial background */
+  html.dark .radial-bg {
+    background: radial-gradient(circle, #0000 0, #000c 99%);
   }
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #777;
+
+  .required:after {
+    content: " *";
+    color: rgb(var(--danger));
   }
 }

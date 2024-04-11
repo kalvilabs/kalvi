@@ -11,6 +11,7 @@
     "./css": "./global.css"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
     "tailwindcss": "^3.4.1"
   }
 }
