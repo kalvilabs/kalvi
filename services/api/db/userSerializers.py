@@ -4,7 +4,7 @@ from db.models import Profile, OrganizationSettings
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['bio', "date_of_birth", "profile_image_url"]
+        fields = ['bio', "date_of_birth", "theme", "profile_image_url"]
 
 class OrganizationSettingsSerializer(serializers.ModelSerializer):
     class Meta:
