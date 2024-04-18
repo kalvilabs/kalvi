@@ -57,7 +57,7 @@ export function ForgotPasswordForm() {
       <AuthPage.PageFooterWrapper>
         <Textbox variant="description">
           Already have an account?{" "}
-          <Link href="/login" legacyBehavior passHref>
+          <Link href="/home/login" legacyBehavior passHref>
             <Linktag textSize="sm">Return to Sign In</Linktag>
           </Link>
         </Textbox>
