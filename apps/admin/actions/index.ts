@@ -1,2 +1,2 @@
-export * from './cookie-destroy'
-export * from './cookie-setter'
+export * from './auth-cookie'
+export * from './theme-cookie'

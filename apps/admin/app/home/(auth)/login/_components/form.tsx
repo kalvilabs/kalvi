@@ -21,7 +21,7 @@ import {
   TLoginErrorResponse,
   TLoginSuccessResponse,
 } from "@/types";
-import { cookieSetter } from "@/actions";
+import { authCookieSetter } from "@/actions";
 import { formSchema, TFormSchema } from "./form-schema";
 
 export function LoginForm() {
@@ -40,7 +40,7 @@ export function LoginForm() {
         LOGIN_URL,
         form.getValues()
       );
-      await cookieSetter({
+      await authCookieSetter({
         access: response.data.token.access,
         refresh: response.data.token.refresh,
       });
@@ -61,7 +61,7 @@ export function LoginForm() {
         cardDescriptionComponent={
           <span>
             Don&apos;t have an account yet?{" "}
-            <Link href="/register" legacyBehavior passHref>
+            <Link href="/home/register" legacyBehavior passHref>
               <Linktag textSize="sm">Sign up</Linktag>
             </Link>
           </span>
@@ -113,7 +113,7 @@ export function LoginForm() {
                   Remember me
                 </Label>
               </CheckboxContainer>
-              <Link href="/forgot-password" legacyBehavior passHref>
+              <Link href="/home/forgot-password" legacyBehavior passHref>
                 <Linktag textSize="sm">Forgot Password?</Linktag>
               </Link>
             </AuthPage.FooterFlexLine>

@@ -14,7 +14,7 @@ import {
   TRegistrationErrorResponse,
   TRegistrationSuccessResponse,
 } from "@/types";
-import { cookieSetter } from "@/actions";
+import { authCookieSetter } from "@/actions";
 import { formSchema, TFormSchema } from "./form-schema";
 
 export function RegisterationForm() {
@@ -41,7 +41,7 @@ export function RegisterationForm() {
         REGISTER_URL,
         data
       );
-      cookieSetter({
+      authCookieSetter({
         access: response.data.token.access,
         refresh: response.data.token.refresh,
       });
@@ -83,7 +83,7 @@ export function RegisterationForm() {
         cardDescriptionComponent={
           <span>
             Already have an account?{" "}
-            <Link href="/login" legacyBehavior passHref>
+            <Link href="/home/login" legacyBehavior passHref>
               <Linktag textSize="sm">Sign In</Linktag>
             </Link>
           </span>

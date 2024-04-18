@@ -71,6 +71,7 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     bio = models.TextField(blank=True, max_length=500)
     date_of_birth= models.DateField(blank=True, null=True)
+    theme = models.JSONField(default=dict)
     profile_image_url = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])  # Accepts valid URLs
 
     class Meta:
@@ -85,7 +86,7 @@ class OrganizationSettings(models.Model):
     name = models.CharField(max_length=255, unique=True)
     logo = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
     icon = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
-    theme = models.CharField(max_length=20)  # Assuming you have predefined themes
+    brand = models.JSONField(default=dict)  
     email = models.EmailField(max_length=50)
     url = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])
     TIMEZONE_CHOICES = tuple(zip(pytz.all_timezones, pytz.all_timezones))
