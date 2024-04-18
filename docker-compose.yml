@@ -11,8 +11,6 @@ services:
         poetry run python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./services/api/:/usr/src/app/
-    ports:
-      - 8000:8000
     environment:
       - SECRET_KEY=kalvisquad
       - DATABASE_NAME=kalvi
@@ -40,5 +38,14 @@ services:
       - POSTGRES_DB=kalvi
   redis:
     image: redis:alpine
+  proxy:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 80:80
+    depends_on:
+      - api
 volumes:
   postgres_data:

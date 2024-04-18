@@ -5,7 +5,7 @@ from db.serializers import SignUpEndPointSerializer, SignInEndPointSerializer, U
 from rest_framework_simplejwt.views import TokenRefreshView as SimpleJWTTokenRefreshView
 from django.contrib.auth import authenticate
 from db.renderer import UserRenderer
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework.permissions import AllowAny
 from django.utils.encoding import smart_str
@@ -26,11 +26,15 @@ from kalvi import settings
 
 # Generate stateless token for User
 def get_tokens_for_user(user):
-  refresh = RefreshToken.for_user(user)
-  return {
-      'refresh': str(refresh),
-      'access': str(refresh.access_token),
-  }
+    refresh = RefreshToken.for_user(user)
+    refresh['email'] = user.email
+    refresh['is_superuser'] = user.is_superuser
+    refresh['is_staff'] = user.is_staff
+    access_token = refresh.access_token   
+    return {
+        'refresh': str(refresh),
+        'access': str(access_token),
+    }
 
 # Generate name from email
 def generate_name_from_email(email):
@@ -67,7 +71,7 @@ class SignUpEndPoint(APIView):
                 token = get_tokens_for_user(user)
                 return Response({'token': token, 'message': 'user registered'}, status=status.HTTP_201_CREATED)
             except Exception:  # Catch potential errors during user creation
-                return Response({"error": "Registration failed. Please try again later."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({"error": "Registration failed. Please try again later"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

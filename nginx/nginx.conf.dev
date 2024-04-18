@@ -1,0 +1,21 @@
+events {
+}
+
+http {
+  sendfile on;
+
+  server {
+    listen 80;
+    root /www/data/;
+    access_log /var/log/nginx/access.log;
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header Referrer-Policy "no-referrer-when-downgrade" always;
+    add_header Permissions-Policy "interest-cohort=()" always;
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+
+    location /api/ {
+      proxy_pass http://api:8000/api/;
+    }
+  }
+}
