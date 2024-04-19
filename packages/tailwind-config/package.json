@@ -8,9 +8,11 @@
   "exports": {
     "./postcss-config": "./postcss.config.js",
     "./tw-config": "./tailwind.config.ts",
-    "./css": "./global.css"
+    "./css": "./global.css",
+    "./css-variable-setter": "./cssVariableSetter.ts"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
     "tailwindcss": "^3.4.1"
   }
 }
