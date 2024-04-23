@@ -5,8 +5,13 @@ from db.userSerializers import ProfileSerializer, OrganizationSettingsSerializer
 from db.models import OrganizationSettings
 from rest_framework.permissions import IsAdminUser
 from rest_framework.exceptions import ValidationError
+from permission.permission import HasRolePermission
+from rest_framework.permissions import IsAuthenticated
 
 class ProfileAPIView(APIView):
+    permission_classes = [IsAuthenticated, HasRolePermission]
+    permission_name = 'calender'
+
     def get(self, request):
         try:
             profile = request.user.profile
@@ -14,7 +19,7 @@ class ProfileAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Exception:
             return Response({'error': 'Please try again later!'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+        
     def put(self, request):
         try:
             profile = request.user.profile
