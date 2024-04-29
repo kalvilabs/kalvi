@@ -10,7 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 
 class ProfileAPIView(APIView):
     permission_classes = [IsAuthenticated, HasRolePermission]
-    permission_name = 'calender'
+    service_name = 'calender'
 
     def get(self, request):
         try:
