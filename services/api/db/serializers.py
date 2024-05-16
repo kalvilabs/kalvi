@@ -48,7 +48,7 @@ class SignInEndPointSerializer(serializers.ModelSerializer):
 class UserProfileSerialiser(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'email', 'name']
+        fields = "__all__"
 
 class UserChangePasswordSerialiser(serializers.Serializer):
     #New password type could be customised here.

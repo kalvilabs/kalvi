@@ -1,1 +1,4 @@
 __pycache__/
+/permission/migrations/*.py
+/permission/migrations/*.pyc
+/permission/migrations/__pycache__/

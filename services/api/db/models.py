@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.core.validators import URLValidator
 import pytz
+from permission.models import Role
 
 class UserManager(BaseUserManager):
     def create_user(self, email, name, password=None, **kwargs):
@@ -46,6 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_email_verified = models.BooleanField(default=False)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, null=True, blank=True)
     last_active = models.DateTimeField(default=timezone.now, null=True)
     last_logout_time = models.DateTimeField(null=True)
     last_logout_ip = models.GenericIPAddressField(null=True, blank=True)
@@ -73,7 +75,6 @@ class Profile(models.Model):
     date_of_birth= models.DateField(blank=True, null=True)
     theme = models.JSONField(default=dict)
     profile_image_url = models.URLField(blank=True, null=True, max_length=800, validators=[URLValidator])  # Accepts valid URLs
-
     class Meta:
         verbose_name = 'Profile'
         verbose_name_plural = 'Profiles'

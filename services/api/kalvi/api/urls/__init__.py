@@ -69,5 +69,7 @@ urlpatterns = [
     ),
     path('organization-settings/',
         OrganizationSettingsAPIView.as_view(),
-        name='organization-settings')
+        name='organization-settings'),
+    path("permission/",
+        include("permission.urls"))
 ]
